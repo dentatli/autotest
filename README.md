@@ -16,14 +16,16 @@
 
 ```text
 autotest/
-├── pages/
+├── pages/                 # Page Objects (POM)
 │   └── form_fields_page.py
-├── tests/
-│   └── test_form_fields.py
-├── utils/
+├── tests/                 # тесты + фикстуры pytest
+│   ├── test_form_fields.py
+│   └── conftest.py
+├── utils/                 # инфраструктура (WebDriver factory)
 │   └── driver_factory.py
-├── conftest.py
-├── .env.example
+├── config.py              # настройки (Pydantic Settings, .env)
+├── .env.example           # пример переменных окружения
+├── pyproject.toml         # зависимости/конфигурация проекта (uv)
 └── README.md
 ```
 
