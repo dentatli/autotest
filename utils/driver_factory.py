@@ -1,24 +1,17 @@
-from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from pathlib import Path
-import os
 
-load_dotenv()
+from config import settings
 
 def build_driver():
     options = Options()
-    options.add_argument("--window-size=1400,900")
 
-    chrome_binary = os.getenv("CHROME_BINARY")
-    if not chrome_binary:
-        raise RuntimeError("CHROME_BINARY не задан")
-    path = Path(chrome_binary)
-    if not path.exists():
-        raise RuntimeError(f"chrome.exe не найден: {path}")
+    if settings.chrome_binary:
+        options.binary_location = settings.chrome_binary
 
-    options.binary_location = str(path)
+    if settings.headless:
+        options.add_argument("--headless=new")
 
     driver = webdriver.Chrome(options=options)
-    driver.implicitly_wait(2)
+    driver.maximize_window()
     return driver

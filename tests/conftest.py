@@ -30,14 +30,6 @@ def driver(request):
         except Exception:
             pass
 
-        try:
-            allure.attach(
-                driver.page_source,
-                name="page_source",
-                attachment_type=allure.attachment_type.HTML,
-            )
-        except Exception:
-            pass
 
         try:
             allure.attach(
